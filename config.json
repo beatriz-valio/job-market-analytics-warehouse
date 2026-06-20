@@ -1,0 +1,16 @@
+{
+  "keywords": [
+    "data engineer",
+	  "ai data engineer"
+  ],
+  "locations": [
+    "Sydney, Australia",
+    "Melbourne, Australia",
+    "Brisbane, Australia",
+    "Perth, Australia",
+    "Australia"
+  ],
+  "country_indeed": "Australia",
+  "days_to_scrape": 3,
+  "desc_words": []
+}
