@@ -1,5 +1,3 @@
-# storage.py
-
 import json
 import logging
 from pathlib import Path
@@ -12,11 +10,6 @@ logger = logging.getLogger(__name__)
 
 
 def get_project_root() -> Path:
-    """
-    Encontra a raiz do projeto procurando por arquivos típicos.
-    Isso evita problema se o script estiver dentro de src/ingestion/.
-    """
-
     current_path = Path(__file__).resolve()
 
     for parent in [current_path.parent, *current_path.parents]:
@@ -31,14 +24,10 @@ def get_project_root() -> Path:
 
 
 PROJECT_ROOT = get_project_root()
-RAW_DIR = PROJECT_ROOT / "raw"
+RAW_DIR = PROJECT_ROOT / "data/raw"
 
 
 def json_safe(value):
-    """
-    Converte valores vindos do pandas/jobspy para formatos seguros em JSON.
-    """
-
     if value is None:
         return None
 
@@ -67,10 +56,6 @@ def json_safe(value):
 
 
 def build_raw_output_path(prefix: str = "jobspy_jobs") -> Path:
-    """
-    Cria a pasta raw/ e gera o caminho do arquivo de saída.
-    """
-
     RAW_DIR.mkdir(parents=True, exist_ok=True)
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -85,12 +70,6 @@ def save_jobs_to_raw(
     location: str,
     output_path: Path | None = None
 ) -> int:
-    """
-    Salva vagas em formato JSONL na pasta raw/.
-
-    Cada linha do arquivo é um JSON independente.
-    """
-
     if df.empty:
         return 0
 
